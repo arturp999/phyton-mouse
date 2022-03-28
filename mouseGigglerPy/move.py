@@ -1,3 +1,4 @@
+from turtle import position
 import pyautogui
 import os
 import time;
@@ -8,13 +9,14 @@ def option():
     print("Minutes - 1")
     print("Seconds - 2")
     n = input()
+    
     if(n == '1'):
         print("How many minutes?")
-        timetable = input()
-        mouseMove(n,timetable) 
-    if(n == '2'):
+        timetable = int(input())
+        mouseMove(n,timetable)
+    elif(n == '2'):
         print("How many seconds?")
-        timetable = input()
+        timetable = int(input())
         mouseMove(n,timetable) 
     else:
         os.system('cls')
@@ -24,12 +26,10 @@ def option():
 def mouseMove(n,timetable):
     print('Press Ctrl + C to quit.')
     if(n == '1'):
-        while(True):
-            time.sleep(int(timetable)*60) #convert to minutes
-            pyautogui.move(0, 2)
-    else:
-        while(True):
-            time.sleep(int(timetable))
-            pyautogui.move(0, 2)
+        timetable = timetable*60
+    while(True):
+        pyautogui.move(0, 1)
+        time.sleep(timetable) #convert to minutes
+        pyautogui.move(0, -1)
 
 option()
